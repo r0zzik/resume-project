@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Резюме</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+    <!-- ХЭДЕР -->
+
+    <header class="header">
+        <h1 class="header__title">Резюме</h1>
+        <nav class="header__links">
+            <a class="header__link header__link--active" href="#about">О себе</a>
+            <a class="header__link" href="#contacts">Контакты</a>
+            <a class="header__link" href="#skills">Навыки</a>
+            <a class="header__link" href="#experience">Опыт</a>
+            <a class="header__link" href="#summary">Итоговое Резюме</a>
+        </nav>
+    </header>
+
+    <!-- МЕЙН -->
+
+    <main class="main">
+
+        <!-- СЕКЦИЯ О СЕБЕ -->
+
+        <section class="page page--active" id="about">
+            <h2 class="page__title">О себе</h2>
+            <form class="form">
+                <label class="form__label" for="username">ФИО:</label>
+                <input class="form__input" type="text" placeholder="Введите ваше имя" id="username">
+
+                <label class="form__label" for="cityInput">Город:</label>
+                <input class="form__input select__input" type="text" placeholder="Введите город" id="cityInput" autocomplete="off">
+                <ul class="select__list">
+                    <li class="select__item">Свой вариант</li>
+                    <li class="select__item">Москва</li>
+                    <li class="select__item">Санкт-Петербург</li>
+                    <li class="select__item">Новосибирск</li>
+                    <li class="select__item">Омск</li>
+                    <li class="select__item">Воркута</li>
+                </ul>
+
+                <label class="form__label" for="university">Университет</label>
+                <input class="form__input" type="text" placeholder="Введите университет" id="university">
+                
+                <div class="form__actions">
+                    <button class="form__button" type="button" id="saveBtn">Сохранить</button>
+                    <button class="form__button" type="button" id="clearBtn">Очистить</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- СЕКЦИЯ КОНТАКТЫ -->
+
+        <section class="page" id="contacts">
+            <h2 class="page__title">Контакты</h2>
+            <div class="contacts">
+            </div>
+            <button class="form__button" type="button" id="addContact">Добавить контакт</button>
+            <div class="form__actions">
+                <button class="form__button" type="button" id="saveContacts">Сохранить</button>
+                <button class="form__button" type="button" id="clearContacts">Очистить</button>
+            </div>
+        </section>
+
+        <!-- СЕКЦИЯ НАВЫКИ -->
+
+        <section class="page" id="skills">
+            <h2 class="page__title">Навыки</h2>
+            <div class="skills">
+                <button class="skill" type="button" data-skill="JavaScript">JavaScript</button>
+                <button class="skill" type="button" data-skill="HTML">HTML</button>
+                <button class="skill" type="button" data-skill="CSS">CSS</button>
+                <button class="skill" type="button" data-skill="SCSS">SCSS</button>
+                <button class="skill" type="button" data-skill="Webpack">Webpack</button>
+                <button class="skill" type="button" data-skill="Python">Python</button>
+                <button class="skill" type="button" data-skill="Java">Java</button>
+                <button class="skill" type="button" data-skill="C++">C++</button>
+                <button class="skill" type="button" data-skill="React">React</button>
+                <button class="skill" type="button" data-skill="Node.js">Node.js</button>
+                <button class="skill" type="button" data-skill="SQL">SQL</button>
+                <button class="skill" type="button" data-skill="Git">Git</button>
+                <button class="skill" type="button" data-skill="Figma">Figma</button>
+                <button class="skill" type="button" data-skill="BEM">BEM</button>
+            </div>
+            <p class="skills__counter">Выбрано навыков: <span id="counter">0</span>/5</p>
+            <div class="form__actions">
+                <button class="form__button" type="button" id="saveSkills">Сохранить</button>
+                <button class="form__button" type="button" id="clearSkills">Очистить</button>
+            </div>
+        </section>
+
+        <!-- СЕКЦИЯ ОПЫТ -->
+
+        <section class="page" id="experience">
+            <h2 class="page__title">Опыт</h2>
+            <form class="form">
+                <label class="form__label" for="experienceText">Опыт работы:</label>
+                <textarea class="form__textarea" id="experienceText" rows="5" placeholder="Опишите Ваш опыт работы"></textarea>
+                <div class="form__actions">
+                    <button class="form__button" id="saveExperience" type="button">Сохранить</button>
+                    <button class="form__button" id="clearExperience" type="button">Очистить</button>
+                </div>
+            </form>
+        </section>
+
+        <!--СЕКЦИЯ РЕЗЮМЕ -->
+
+        <section class="page" id="summary">
+            <h2 class="page__title">Резюме</h2>
+            <div class="summary">
+                <div class="summary__content">
+                    <div class="summary__text" id="summaryAbout"></div>
+                    <div class="summary__text" id="summaryContacts"></div>
+                    <div class="summary__text" id="summarySkills"></div>
+                </div>
+                <div class="summary__photo">
+                    <div class="summary__photo-placeholder" id="photoPlaceholder">Место для фото</div>
+                    <img class="summary__img" id="photoPreview" src="#" alt="Фото" hidden>
+                    <div class="summary__photo-actions">
+                        <input type="file" id="photoInput" accept="image/*" hidden>
+                        <button class="form__button" id="uploadBtn" type="button">Загрузить фото</button>
+                        <button class="form__button" id="clearPhotoBtn" type="button">Очистить</button>
+                    </div>
+                </div>
+                <div class="summary__text summary__text--full" id="summaryExperience"></div>
+            </div>
+            <div class="summary__actions">
+                <button class="form__button" type="button" id="pdfBtn">Сохранить в PDF</button>
+                <button class="form__button" type="button" id="clearSummaryBtn">Очистить</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- ФУТЕР -->
+
+    <footer class="footer">
+        <p class="footer__text">r0zzik © <span id="year"></span></p>
+    </footer>
+
+    <!-- СКРИПИТ -->
+
+    <script src="script.js"></script>
+</body>
+</html>

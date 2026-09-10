@@ -1,0 +1,673 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Jura:wght@300..700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(/images/Background.jpg);
+    background-repeat: repeat;
+    background-size: 1600px 900px;
+    animation: moveBg 30s linear infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    font-family: "Jura", sans-serif;
+    font-weight: 400;
+    color: #fff;
+}
+
+/* АНИМАЦИЯ ФОН */
+
+@keyframes moveBg {
+    0% {
+        background-position: 1600px -900px;
+    }
+    100% {
+        background-position: -1600px 900px;
+    }
+}
+
+/* ХЭДЕР И МЕЙН */
+
+.header,
+.main {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.main {
+    flex-grow: 1;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding-top: 50px;
+}
+
+.header__title {
+    font-size: 32px;
+}
+
+.header__links {
+    width: 80%;
+    min-height: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.header__link {
+    font-size: 20px;
+    white-space: nowrap;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.header__link--active {
+    font-weight: 700;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 8px;
+}
+
+.header__link:hover {
+    font-weight: 700;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 8px;
+}
+
+/* СТРАНИЦЫ */
+
+.page {
+    display: none;
+}
+
+.page--active {
+    display: block;
+}
+
+.page__title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 30px;
+    padding: 50px 0 15px 0;
+    border-bottom: 2px solid #fff;
+}
+
+/* СЕКЦИЯ О СЕБЕ */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form__input {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: "Jura", sans-serif;
+    outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 16px;
+}
+
+.form__input:focus {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.form__input:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.form__input::placeholder {
+    color: #fff;
+}
+
+.form__input.select__input {
+    margin-bottom: 0;
+}
+
+.select__btn:focus {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.select__btn:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.select__list {
+    display: none;
+    list-style: none;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 16px;
+    margin-top: -15px;
+}
+
+.select__list--open {
+    display: block;
+}
+
+.select__item {
+    padding: 10px 20px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.select__item:hover {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    font-weight: 700;
+}
+
+.form__actions,
+.summary__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.form__button {
+    width: 47%;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: "Jura", sans-serif;
+    font-size: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.form__button:hover {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid #fff;
+    font-weight: 700;
+}
+
+/* СЕКЦИЯ КОНТАКТЫ */
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr 40px;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.contact:focus-within {
+    position: relative;
+    z-index: 100;
+}
+
+.contact__type {
+    width: 100%;
+}
+
+.contact__type-wrapper {
+    position: relative;
+}
+
+.contact__list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 8px;
+    z-index: 100;
+}
+
+.contact__list--open {
+    display: block;
+}
+
+.contact__item {
+    padding: 10px 20px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.contact__item:hover {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    font-weight: 700;
+}
+
+.contact__remove {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: 400;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.contact__remove:hover {
+    border: 1px solid #fff;
+    background: rgba(255, 255, 255, 0.3);
+    font-weight: 700;
+}
+
+#addContact {
+    width: auto;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+/* СЕКЦИЯ НАВЫКИ */
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 20px;
+}
+
+.skill {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    cursor: pointer;
+    font-family: "Jura", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.skill:hover {
+    background: #fff;
+    border-color: #fff;
+    font-weight: 700;
+    color: #000;
+}
+
+.skill--level-1 {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: #fff;
+    font-weight: 700;
+    color: #000;
+}
+
+.skill--level-2 {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: #fff;
+    font-weight: 700;
+    color: #000;
+}
+
+.skill--level-3 {
+    background: #fff;
+    border-color: #fff;
+    font-weight: 700;
+    color: #000;
+}
+
+.skills__counter {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #fff;
+}
+
+/* СЕКЦИЯ ОПЫТ */
+
+.form__textarea {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: "Jura", sans-serif;
+    outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 16px;
+    resize: vertical;
+    min-height: 100px;
+    max-height: 300px;
+    scrollbar-width: none;
+}
+
+.form__textarea::-webkit-scrollbar {
+    display: none;
+}
+
+.form__textarea:focus {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.form__textarea:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.form__textarea::placeholder {
+    color: #fff;
+}
+
+/* СЕКЦИЯ РЕЗЮМЕ */
+
+.summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.summary__text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    line-height: 1.6;
+    padding-bottom: 20px;
+    width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
+.summary__text p {
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
+.summary__text h3 {
+    font-size: 20px;
+}
+
+.summary__text ul {
+    padding-left: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.summary__text li {
+    padding-bottom: 5px;
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
+.summary__text--full {
+    grid-column: 1 / -1;
+}
+
+.summary__photo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-self: end;
+}
+
+.summary__photo-placeholder {
+    width: 200px;
+    height: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.summary__img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.summary__photo-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 200px;
+}
+
+.summary__photo-actions .form__button {
+    width: 100%;
+    white-space: nowrap;
+}
+
+/* ФУТЕР */
+
+.footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    background: transparent;
+}
+
+.footer__text {
+    font-size: 12px;
+    color: #fff;
+}
+
+/* АДАПТИВ */
+
+@media (max-width: 1024px) {
+    .header__links {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .header,
+    .main {
+        width: 90%;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .header__links {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .form__actions,
+    .summary__actions {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .form__button {
+        width: 100%;
+    }
+
+    .contact {
+        grid-template-columns: 1fr 40px;
+        grid-template-areas:
+            "type remove"
+            "value value";
+        align-items: center;
+    }
+
+    .contact__type-wrapper {
+        grid-area: type;
+    }
+
+    .contact__remove {
+        grid-area: remove;
+    }
+
+    .contact__value {
+        grid-area: value;
+    }
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+    .summary__photo {
+        order: -1;
+        justify-self: center;
+    }
+
+    /* Убрать ховер-стили */
+    .header__link:hover,
+    .form__input:hover,
+    .select__btn:hover,
+    .form__textarea:hover {
+        border-color: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.1);
+        font-weight: 400;
+    }
+
+    .form__button:hover {
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.5);
+        font-weight: 400;
+    }
+
+    .skill:hover {
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.3);
+        color: #000;
+    }
+
+    .contact__remove:hover {
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.1);
+        font-weight: 400;
+    }
+}
+
+@media (max-width: 425px) {
+    .header__title {
+        font-size: 28px;
+    }
+
+    .main__title {
+        font-size: 26px;
+    }
+}
+
+/* АНИМАЦИЯ СТРАНИЦ */
+
+.page--active .page__title,
+.page--active .form,
+.page--active .form__button,
+.page--active .skills,
+.page--active .summary,
+.page--active .form__actions,
+.page--active .summary__actions,
+.page--active .skills__counter,
+.page--active .contact {
+    animation: fadeUp 0.6s ease both;
+}
+
+.animate {
+    animation: fadeUp 0.6s ease both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* НАСТРОЙКИ ПЕЧАТИ */
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #summary,
+    #summary * {
+        visibility: visible;
+    }
+
+    #summary {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding-left: 50px;
+        padding-right: 50px;
+        color: #000;
+    }
+
+    .summary__actions,
+    .summary__photo-actions {
+        display: none;
+    }
+
+    .summary__photo {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 200px;
+    }
+
+    .summary__photo-placeholder {
+        border: 1px solid #ccc;
+        color: #ccc;
+        visibility: visible;
+    }
+
+    .summary__img[hidden] {
+        display: none;
+    }
+
+    #summary .page__title {
+        border-bottom: 1px solid #000;
+        padding-bottom: 10px;
+    }
+
+    .summary {
+        position: relative;
+        border-bottom: 1px solid #000;
+        padding-bottom: 50px;
+        min-height: 400px;
+    }
+}
