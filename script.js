@@ -143,6 +143,16 @@ clearBtn.addEventListener('click', function () {
 
 // СЕКЦИЯ КОНТАКТЫ
 
+// Закрытие списка при клике мимо
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.contact__type-wrapper')) {
+        document.querySelectorAll('.contact__list').forEach(list => {
+           list.style.display = 'none';
+           list.classList.remove('contact__list--open');
+        });       
+    }
+});
+
 // Добавить строку контакта
 function createContactRow() {
     const contact = document.createElement('div');
@@ -206,14 +216,6 @@ function createContactRow() {
     // Удаление строки
     contact.querySelector('.contact__remove').addEventListener('click', () => {
         contact.remove();
-    });
-
-    // Закрытие списка при клике мимо
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.contact')) {
-            list.style.display = 'none';
-            list.classList.remove('contact__list--open');
-        }
     });
 
     return contact;
