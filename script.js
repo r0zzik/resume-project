@@ -43,7 +43,9 @@ const year = document.getElementById('year');
 // МЕНЮ HEADER
 
 links.forEach((link) => {
-    link.addEventListener('click', function () {
+    
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
         // Убираем active у всех ссылок
         links.forEach((l) => l.classList.remove('header__link--active'));
         this.classList.add('header__link--active');
