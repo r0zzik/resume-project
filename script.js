@@ -1,5 +1,6 @@
 const links = document.querySelectorAll('.header__link');
 const pages = document.querySelectorAll('.page');
+const burger = document.getElementById('burger');
 
 const cityInput = document.getElementById('cityInput');
 const selectList = document.querySelector('.select__list');
@@ -59,6 +60,7 @@ links.forEach((link) => {
         if (targetPage) {
             targetPage.classList.add('page--active');
         }
+        burger.checked = false;   // ← закрыть бургер-меню
     });
 });
 
