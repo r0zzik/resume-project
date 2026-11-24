@@ -548,7 +548,7 @@ body {
         pointer-events: none;
         transition: opacity 0.3s ease, transform 0.3s ease;
         text-decoration: none;
-        index: 99;
+        z-index: 99;
     }
 
     /* открытое состояние — чекбокс отмечен, меню сразу за ним по DOM */

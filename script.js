@@ -125,6 +125,20 @@ document.addEventListener('click', (e) => {
     }
 });
 
+
+// ЛОКАЛ СТОРАЖ Сохр
+function saveToStorage(key, value) {
+    const data = JSON.parse(localStorage.getItem('resumeData')) || {};
+    data[key] = value;
+    localStorage.setItem('resumeData', JSON.stringify(data));
+}
+// ЛОКАЛ СТОРАЖ Удалить
+function removeFromStorage(key) {
+    const data = JSON.parse(localStorage.getItem('resumeData')) || {};
+    delete data[key];
+    localStorage.setItem('resumeData', JSON.stringify(data));
+}
+
 saveBtn.addEventListener('click', function () {
     selectedCity = cityInput.value;
 
@@ -133,6 +147,17 @@ saveBtn.addEventListener('click', function () {
         <p><strong>Город:</strong> ${selectedCity || '-'}</p>
         <p><strong>Университет:</strong> ${univerInput.value || '-'}</p>
     `;
+
+    // Локал стораж
+    const currentData = JSON.parse(localStorage.getItem('resumeData')) || {};
+
+    currentData.about = {
+        name: nameInput.value,
+        city: selectedCity,
+        univer: univerInput.value
+    };
+
+    localStorage.setItem('resumeData', JSON.stringify(currentData));
 });
 
 clearBtn.addEventListener('click', function () {
@@ -143,6 +168,11 @@ clearBtn.addEventListener('click', function () {
     selectedCity = '';
     cityInput.value = '';
     summaryAbout.innerHTML = '';
+
+    // Локал стораж
+    const currentData = JSON.parse(localStorage.getItem('resumeData')) || {};
+    delete currentData.about;
+    localStorage.setItem('resumeData', JSON.stringify(currentData));
 });
 
 // СЕКЦИЯ КОНТАКТЫ
@@ -237,6 +267,8 @@ addContactBtn.addEventListener('click', () => {
 // Сохранить контакты
 saveContacts.addEventListener('click', () => {
     const rows = contactsContainer.querySelectorAll('.contact');
+    // Массив для локалстораж
+    const contactsArray = [];
 
     let contactsHtml = '';
     rows.forEach((row) => {
@@ -245,6 +277,7 @@ saveContacts.addEventListener('click', () => {
 
         if (type && value) {
             contactsHtml += `<li>${type}: ${value}</li>`;
+            contactsArray.push({ type, value });
         }
     });
 
@@ -253,8 +286,10 @@ saveContacts.addEventListener('click', () => {
             <p><strong>Контакты:</strong></p>
             <ul>${contactsHtml}</ul>
         `;
+        saveToStorage('contacts', contactsArray);
     } else {
         summaryContacts.innerHTML = '';
+        removeFromStorage('contacts');
     }
 });
 
@@ -264,6 +299,8 @@ clearContacts.addEventListener('click', () => {
     summaryContacts.innerHTML = '';
     contactsContainer.appendChild(createContactRow());
     contactsContainer.appendChild(createContactRow());
+
+    removeFromStorage('contacts');
 });
 
 // СЕКЦИЯ НАВЫКИ
@@ -324,6 +361,8 @@ saveSkills.addEventListener('click', () => {
                 ).join('')}
         </ul>
     `;
+
+    saveToStorage('skills', skillLevels);
 });
 
 clearSkills.addEventListener('click', () => {
@@ -345,6 +384,8 @@ clearSkills.addEventListener('click', () => {
     });
     counter.textContent = '0';
     summarySkills.innerHTML = '';
+
+    removeFromStorage('skills');
 });
 
 // СЕКЦИЯ ОПЫТ
@@ -354,6 +395,7 @@ saveExperience.addEventListener('click', function () {
         <p><strong>Опыт работы:</strong></p>
         <p>${experienceText.value.replace(/\n/g, '<br>') || '-'}</p>
     `;
+    saveToStorage('experience', experienceText.value);
 });
 
 clearExperience.addEventListener('click', function () {
@@ -361,6 +403,8 @@ clearExperience.addEventListener('click', function () {
     fields.forEach((el) => restartAnimation(el));
     experienceText.value = '';
     summaryExperience.innerHTML = '';
+
+    removeFromStorage('experience');
 });
 
 // СЕКЦИЯ РЕЗЮМЕ
@@ -383,11 +427,20 @@ clearSummaryBtn.addEventListener('click', function () {
     photoPlaceholder.style.display = 'flex';
     photoInput.value = '';
 
-    // Очистить текстов
+    // Очистить тексты
     summaryAbout.innerHTML = '';
     summaryContacts.innerHTML = '';
     summarySkills.innerHTML = '';
     summaryExperience.innerHTML = '';
+
+    // Локал стораж - полностью очистить
+    localStorage.removeItem('resumeData');
+
+    // Очистить все поля ввода
+    clearBtn.click();
+    clearContacts.click();
+    clearSkills.click();
+    clearExperience.click();
 });
 
 // КНОПКИ В РЕЗЮМЕ ФОТО
@@ -404,6 +457,12 @@ photoInput.addEventListener('change', () => {
             photoPreview.src = e.target.result;
             photoPreview.hidden = false;
             photoPlaceholder.style.display = 'none';
+            // Чтобы сайт не завис призагрузке слишком тяжелого фото
+            try {
+                saveToStorage('photo', e.target.result);
+            } catch (err) {
+                alert('Фото слишком большое для сохранения в памяти браузера, но в PDF оно выгрузится!');
+            }
         };
         reader.readAsDataURL(file);
     }
@@ -414,8 +473,68 @@ clearPhotoBtn.addEventListener('click', () => {
     photoPreview.hidden = true;
     photoPlaceholder.style.display = 'flex';
     photoInput.value = '';
+
+    removeFromStorage('photo');
 });
 
 // ФУТЕР
 
 year.textContent = new Date().getFullYear();
+
+// ЛОКАЛ СТОРАЖ
+
+const saved = JSON.parse(localStorage.getItem('resumeData'));
+
+if (saved) {
+    // О себе
+    if (saved.about) {
+        nameInput.value = saved.about.name || '';
+        cityInput.value = saved.about.city || '';
+        univerInput.value = saved.about.univer || '';
+        // Автоматически вписывать в итоговое резюме
+        saveBtn.click();
+    }
+
+    // Контакты
+    if (saved.contacts && saved.contacts.length > 0) {
+        // Убираем 2 пустые строчки по умолчанию
+        contactsContainer.innerHTML = '';
+        saved.contacts.forEach((item) => {
+            const row = createContactRow();
+            row.querySelector('.contact__type').value = item.type;
+            row.querySelector('.contact__value').value = item.value;
+            contactsContainer.appendChild(row);
+        });
+        saveContacts.click();
+    }
+
+    // Навыки
+    if (saved.skills) {
+        const levelNames = { 1: 'Начальный', 2: 'Средний', 3: 'Продвинутый'};
+        Object.assign(skillLevels, saved.skills);
+
+        skillBtns.forEach((btn) => {
+            const skill = btn.dataset.skill;
+            const level = skillLevels[skill];
+            if (level) {
+                btn.className = `skill skill--level-${level}`;
+                btn.innerHTML = `${skill} <span class='skill__level'>${levelNames[level]}</span>`;
+            }
+        });
+        updateCounter();
+        saveSkills.click();
+    }
+
+    // Опыт
+    if (saved.experience) {
+        experienceText.value = saved.experience;
+        saveExperience.click();
+    }
+
+    // Фото
+    if (saved.photo) {
+        photoPreview.src = saved.photo;
+        photoPreview.hidden = false;
+        photoPlaceholder.style.display = 'none';
+    }
+}  
