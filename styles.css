@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Jura:wght@300..700&display=swap");
 
+/* ==================== СБРОС СТИЛЕЙ ==================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -20,18 +22,73 @@ body {
     color: #fff;
 }
 
-/* АНИМАЦИЯ ФОН */
+/* ==================== АНИМАЦИЯ ФОН ======================================== */
 
 @keyframes moveBg {
-    0% {
-        background-position: 1600px -900px;
+    0% { background-position: 1600px -900px; }
+    100% { background-position: -1600px 900px; }
+}
+
+/* ==================== ОБЩИЕ ИНТЕРАКТИВНЫЕ ЭЛЕМЕНТЫ ======================================== */
+
+.header__link,
+.form__button,
+.skill,
+.contact__remove,
+.select__item,
+.contact__item,
+.header__button {
+    cursor: pointer;
+    transition: scale 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.form__button:active,
+.skill:active,
+.contact__remove:active {
+    scale: 0.97;
+}
+
+/* Ховеры работают только на устройстве с мышкой */
+@media (hover: hover) {
+    .header__link:hover {
+        scale: 1.05;
+        border-bottom: 2px solid #fff;
+        padding-bottom: 8px;
     }
-    100% {
-        background-position: -1600px 900px;
+
+    .form__input:hover,
+    .form__textarea:hover {
+        border-color: #fff;
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .select__item:hover,
+    .contact__item:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .form__button:hover {
+        scale: 1.03;
+        background: rgba(255, 255, 255, 0.65);
+        border-color: #fff;
+        text-shadow: 0 0 0.5px currentColor;
+    }
+
+    .skill:hover {
+        scale: 1.04;
+        background: #fff;
+        border-color: #fff;
+        color: #000;
+    }
+    
+    .contact__remove:hover {
+        scale: 1.05;
+        background: rgba(255, 255, 255, 0.3);
+        border-color: #fff;
     }
 }
 
-/* ХЭДЕР И МЕЙН */
+/* ==================== ХЭДЕР И МЕЙН ======================================== */
 
 .header,
 .main {
@@ -59,7 +116,7 @@ body {
 }
 
 .header__links {
-    width: 80%;
+    width: 100%;
     min-height: 20px;
     display: flex;
     justify-content: space-between;
@@ -73,7 +130,6 @@ body {
     white-space: nowrap;
     text-decoration: none;
     color: #fff;
-    cursor: pointer;
 }
 
 .header__link--active {
@@ -82,20 +138,13 @@ body {
     padding-bottom: 8px;
 }
 
-.header__link:hover {
-    font-weight: 700;
-    border-bottom: 2px solid #fff;
-    padding-bottom: 8px;
-}
-
-
 .header__button span {
     width: 40px;
     height: 2px;
     background-color: #fff;
-    }
+}
 
-/* СТРАНИЦЫ */
+/* ==================== СТРАНИЦЫ ======================================== */
 
 .page {
     display: none;
@@ -114,7 +163,7 @@ body {
     border-bottom: 2px solid #fff;
 }
 
-/* СЕКЦИЯ О СЕБЕ */
+/* ==================== СЕКЦИЯ О СЕБЕ ======================================== */
 
 .form {
     display: flex;
@@ -122,7 +171,8 @@ body {
     gap: 15px;
 }
 
-.form__input {
+.form__input,
+.form__textarea {
     padding: 10px 20px;
     border-radius: 8px;
     font-family: "Jura", sans-serif;
@@ -133,38 +183,24 @@ body {
     font-size: 16px;
 }
 
-.form__input:focus {
+.form__input:focus
+.form__textarea:focus {
     border-color: #fff;
     background: rgba(255, 255, 255, 0.2);
 }
 
-.form__input:hover {
-    border-color: #fff;
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.form__input::placeholder {
-    color: #fff;
+.form__input::placeholder,
+.form__textarea::placeholder {
+    color: rgba(255, 255, 255, 0.75);
 }
 
 .form__input.select__input {
     margin-bottom: 0;
 }
 
-.select__btn:focus {
-    border-color: #fff;
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.select__btn:hover {
-    border-color: #fff;
-    background: rgba(255, 255, 255, 0.2);
-}
-
 .select__list {
     display: none;
     list-style: none;
-    padding: 0;
     border: 1px solid rgba(255, 255, 255, 0.5);
     background: rgba(0, 0, 0, 0.9);
     border-radius: 8px;
@@ -180,40 +216,31 @@ body {
 .select__item {
     padding: 10px 20px;
     color: #fff;
-    cursor: pointer;
 }
 
-.select__item:hover {
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    font-weight: 700;
-}
+/* ==================== КНОПКИ ДЕЙСТВИЙ И НАВИГАЦИИ ======================================== */
 
 .form__actions,
 .summary__actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
     padding: 30px 0;
 }
 
 .form__button {
-    width: 47%;
     padding: 10px 20px;
     border-radius: 8px;
-    cursor: pointer;
     font-family: "Jura", sans-serif;
     font-size: 18px;
     border: 1px solid rgba(255, 255, 255, 0.8);
     background: rgba(255, 255, 255, 0.5);
+    color: #000;
 }
 
-.form__button:hover {
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid #fff;
-    font-weight: 700;
-}
-
-/* СЕКЦИЯ КОНТАКТЫ */
+/* ==================== СЕКЦИЯ КОНТАКТЫ ======================================== */
 
 .contacts {
     display: flex;
@@ -234,7 +261,6 @@ body {
 }
 
 .contact:focus-within {
-    position: relative;
     z-index: 100;
 }
 
@@ -253,11 +279,10 @@ body {
     width: 100%;
     display: none;
     list-style: none;
-    padding: 0;
-    margin: 0;
     border: 1px solid rgba(255, 255, 255, 0.5);
     background: rgba(0, 0, 0, 0.9);
     border-radius: 8px;
+    overflow: hidden;
     z-index: 100;
 }
 
@@ -268,12 +293,6 @@ body {
 .contact__item {
     padding: 10px 20px;
     color: #fff;
-    cursor: pointer;
-}
-
-.contact__item:hover {
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    font-weight: 700;
 }
 
 .contact__remove {
@@ -282,16 +301,8 @@ body {
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.5);
     background: rgba(255, 255, 255, 0.1);
-    font-weight: 400;
     color: #fff;
-    cursor: pointer;
     font-size: 18px;
-}
-
-.contact__remove:hover {
-    border: 1px solid #fff;
-    background: rgba(255, 255, 255, 0.3);
-    font-weight: 700;
 }
 
 #addContact {
@@ -300,7 +311,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* СЕКЦИЯ НАВЫКИ */
+/* ==================== СЕКЦИЯ НАВЫКИ ======================================== */
 
 .skills {
     display: flex;
@@ -315,17 +326,8 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.7);
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
-    cursor: pointer;
     font-family: "Jura", sans-serif;
     font-size: 16px;
-    font-weight: 400;
-}
-
-.skill:hover {
-    background: #fff;
-    border-color: #fff;
-    font-weight: 700;
-    color: #000;
 }
 
 .skill--level-1 {
@@ -350,22 +352,13 @@ body {
 }
 
 .skills__counter {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding: 15px 0;
     color: #fff;
 }
 
-/* СЕКЦИЯ ОПЫТ */
+/* ==================== СЕКЦИЯ ОПЫТ ======================================== */
 
 .form__textarea {
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-family: "Jura", sans-serif;
-    outline: none;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    font-size: 16px;
     resize: vertical;
     min-height: 100px;
     max-height: 300px;
@@ -376,21 +369,7 @@ body {
     display: none;
 }
 
-.form__textarea:focus {
-    border-color: #fff;
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.form__textarea:hover {
-    border-color: #fff;
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.form__textarea::placeholder {
-    color: #fff;
-}
-
-/* СЕКЦИЯ РЕЗЮМЕ */
+/* ==================== СЕКЦИЯ РЕЗЮМЕ ======================================== */
 
 .summary {
     display: grid;
@@ -407,12 +386,7 @@ body {
     padding-bottom: 20px;
     width: 100%;
     overflow-wrap: break-word;
-    word-break: break-all;
-}
-
-.summary__text p {
-    overflow-wrap: break-word;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .summary__text h3 {
@@ -420,15 +394,12 @@ body {
 }
 
 .summary__text ul {
-    padding-left: 50px;
+    padding-left: 30px;
     padding-top: 5px;
-    padding-bottom: 5px;
 }
 
 .summary__text li {
     padding-bottom: 5px;
-    overflow-wrap: break-word;
-    word-break: break-all;
 }
 
 .summary__text--full {
@@ -443,12 +414,16 @@ body {
     justify-self: end;
 }
 
-.summary__photo-placeholder {
+.summary__photo-placeholder,
+.summary__img {
     width: 200px;
     height: 300px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.summary__photo-placeholder {
+    border: 1px solid rgba(255, 255, 255, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -456,12 +431,8 @@ body {
 }
 
 .summary__img {
-    width: 200px;
-    height: 300px;
     object-fit: cover;
     border: 2px solid #fff;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
 }
 
 .summary__photo-actions {
@@ -476,15 +447,12 @@ body {
     white-space: nowrap;
 }
 
-/* ФУТЕР */
+/* ==================== ФУТЕР ======================================== */
 
 .footer {
-    bottom: 0;
-    left: 0;
     width: 100%;
     padding: 15px 0;
     text-align: center;
-    background: transparent;
 }
 
 .footer__text {
@@ -492,22 +460,18 @@ body {
     color: #fff;
 }
 
-/* АДАПТИВ */
+/* ==================== АДАПТИВ ======================================== */
 
-@media (max-width: 1024px) {
-    .header__links {
-        width: 100%;
-    }
-}
-
-@media (min-width: 769px) {
+/* Десктоп и планшеты (от 768px): кнопки в 1 ряд */
+@media (min-width: 768px) {
     .header__button,
     .header__checkbox {
         display: none;
     }
 }
 
-@media (max-width: 768px) {
+/* Мобильные устройства (до 767px): */
+@media (max-width: 767px) {
     .header,
     .main {
         width: 90%;
@@ -516,38 +480,40 @@ body {
     .header {
         flex-direction: row;
         justify-content: space-between;
-        align-items: flex-start;
-        padding-top: 30px;
+        align-items: center;
+        padding-top: 25px;
+    }
+
+    .page__title {
+        padding: 25px 0 12px 0;
+        margin-bottom: 20px;
     }
 
     .header__button {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         padding: 10px;
-        cursor: pointer;
         background: transparent;
         border: 1px solid #fff;
         border-radius: 8px;
-        flex-direction: column;
     }
 
     .header__links {
         position: absolute;
-        top: 100%;              /* сразу под .header */
+        top: calc(100% + 8px);
         right: 0;
         display: flex;
         flex-direction: column;
-        align-items: end;
-        gap: 0;
-        max-width: max-content;
-        /* скрытое состояние */
+        align-items: stretch;
+        gap: 4px;
+        width: auto;
+        /* Скрытое состояние */
         opacity: 0;
         transform: translateY(-10px);
         pointer-events: none;
         transition: opacity 0.3s ease, transform 0.3s ease;
-        text-decoration: none;
         z-index: 99;
     }
 
@@ -560,26 +526,14 @@ body {
     
     .header__link {
         width: 130px;
-        padding: 8px 20px;
-        font-family: "Jura", sans-serif;
+        padding: 10px 16px;
         font-size: 18px;
         border: 1px solid #fff;
         border-radius: 8px;
-        text-wrap: wrap;
-        background: rgba(255, 255, 255, 0.8);
-        cursor: pointer;
+        background: rgba(255, 255, 255, 0.9);
         color: #000;
-    }
-
-
-    .form__actions,
-    .summary__actions {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .form__button {
-        width: 100%;
+        white-space: normal;
+        line-height: 1.2;
     }
 
     .contact {
@@ -587,7 +541,7 @@ body {
         grid-template-areas:
             "type remove"
             "value value";
-        align-items: center;
+        /* align-items: center; */
     }
 
     .contact__type-wrapper {
@@ -604,6 +558,19 @@ body {
 
     .summary {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .summary__text:empty {
+        display: none;
+    }
+
+    .summary__text {
+        padding-bottom: 10px;
+    }
+
+    .summary__actions {
+        padding: 15px 0;
     }
 
     .summary__photo {
@@ -611,50 +578,94 @@ body {
         justify-self: center;
     }
 
-    /* Убрать ховер-стили */
-    .header__link:hover {
-        border-color: rgba(255, 255, 255, 1);
-        background: rgba(255, 255, 255, 0.8);
-        font-weight: 900;
-    }
-    .form__input:hover,
-    .select__btn:hover,
-    .form__textarea:hover {
-        border-color: rgba(255, 255, 255, 0.5);
-        background: rgba(255, 255, 255, 0.1);
-        font-weight: 400;
+    .summary__photo-placeholder,
+    .summary__img {
+        width: 180px;
+        height: 240px;
     }
 
-    .form__button:hover {
-        border: 1px solid rgba(255, 255, 255, 0.8);
-        background: rgba(255, 255, 255, 0.5);
-        font-weight: 400;
-    }
-
-    .skill:hover {
-        border: 1px solid rgba(255, 255, 255, 0.7);
-        background: rgba(255, 255, 255, 0.3);
-        color: #000;
-    }
-
-    .contact__remove:hover {
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        background: rgba(255, 255, 255, 0.1);
-        font-weight: 400;
+    .summary__photo-actions {
+        width: 180px;
     }
 }
 
-@media (max-width: 425px) {
-    .header__title {
-        font-size: 28px;
+/* Кнопки в 1 ряд, начиная с 570px */
+@media (min-width: 570px) {
+    .form__actions,
+    .summary__actions {
+        justify-content: flex-end;
     }
 
-    .main__title {
+    .form__button--prev {
+        margin-right: auto;
+    }
+}
+
+/* Кнопки от 425px до 619px: в 2 этажа (Сохранить + Очистить сверху, Назад + Далее снизу) */
+@media (max-width: 569px) {
+    .form__actions .form__button,
+    .summary__actions .form__button {
+        flex: 1 1 45%;
+        order: 1;
+    }
+
+    .form__actions .form__button--prev,
+    .summary__actions .form__button--prev {
+        order: 2;
+    }
+
+    .form__actions .form__button--next,
+    .summary__actions .form__button--next {
+        order: 3;
+    }
+
+    #pdfBtn {
+        flex: 1 1 auto;
+        width: auto;
+    }
+
+    #clearSummaryBtn {
+        flex: 0 0 auto;
+        width: auto;
+    }
+}
+
+/* В секции О себе 3 кнопки встают в ряд с 500px */
+@media (min-width: 500px) {
+    #about .form__actions {
+        justify-content: flex-end;
+    }
+
+    #about .form__button--prev {
+        margin-right: auto;
+    }
+}
+
+/* Узкие смартфоны (до 424-320px, 375px): кнопки в 3 этажа */
+@media (max-width: 424px) {
+    .header__title {
         font-size: 26px;
     }
+
+    .form__button {
+        padding: 10px 12px;
+    }
 }
 
-/* АНИМАЦИЯ СТРАНИЦ */
+@media (max-width: 330px) {
+    .summary__actions .form__button,
+    #clearSummaryBtn,
+    #pdfBtn {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    .summary__actions .form__button--prev {
+        flex: 1 1 45%;
+    }
+}
+
+/* ==================== АНИМАЦИЯ СТРАНИЦ ======================================== */
 
 .page--active .page__title,
 .page--active .form,
@@ -683,7 +694,7 @@ body {
     }
 }
 
-/* НАСТРОЙКИ ПЕЧАТИ */
+/* ==================== НАСТРОЙКИ ПЕЧАТИ ======================================== */
 
 @media print {
     body * {
@@ -700,8 +711,7 @@ body {
         top: 0;
         left: 0;
         width: 100%;
-        padding-left: 50px;
-        padding-right: 50px;
+        padding: 0 50px;
         color: #000;
     }
 
@@ -717,6 +727,11 @@ body {
         width: 200px;
     }
 
+    .summary__photo-placeholder,
+    .summary__img {
+        width: 200px;
+        height: 300px;
+    }
     .summary__photo-placeholder {
         border: 1px solid #ccc;
         color: #ccc;

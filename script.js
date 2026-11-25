@@ -39,6 +39,8 @@ const photoPlaceholder = document.getElementById('photoPlaceholder');
 const pdfBtn = document.getElementById('pdfBtn');
 const clearSummaryBtn = document.getElementById('clearSummaryBtn');
 
+const linksArray = Array.from(links);
+
 const year = document.getElementById('year');
 
 // МЕНЮ HEADER
@@ -475,6 +477,30 @@ clearPhotoBtn.addEventListener('click', () => {
     photoInput.value = '';
 
     removeFromStorage('photo');
+});
+
+// КНОПКИ НАЗАД И ДАЛЕЕ
+
+document.querySelectorAll('.form__button--next').forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const activeIndex = linksArray.findIndex((link) => 
+            link.classList.contains('header__link--active')
+        );
+        if (linksArray[activeIndex + 1]) {
+            linksArray[activeIndex + 1].click();
+        }
+    });
+});
+
+document.querySelectorAll('.form__button--prev').forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const activeIndex = linksArray.findIndex((link) => 
+            link.classList.contains('header__link--active')
+        );
+        if (linksArray[activeIndex - 1]) {
+            linksArray[activeIndex - 1].click();
+        }
+    });
 });
 
 // ФУТЕР

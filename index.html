@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,8 +54,9 @@
                 <input class="form__input" type="text" placeholder="Введите университет" id="university">
                 
                 <div class="form__actions">
-                    <button class="form__button" type="button" id="saveBtn">Сохранить</button>
                     <button class="form__button" type="button" id="clearBtn">Очистить</button>
+                    <button class="form__button" type="button" id="saveBtn">Сохранить</button>
+                    <button class="form__button form__button--next" type="button" id="nextBtn">&rarr; Далее</button>
                 </div>
             </form>
         </section>
@@ -68,8 +69,10 @@
             </div>
             <button class="form__button" type="button" id="addContact">Добавить контакт</button>
             <div class="form__actions">
-                <button class="form__button" type="button" id="saveContacts">Сохранить</button>
+                <button class="form__button form__button--prev hi" type="button" id="prevBtn">&larr; Назад</button>
                 <button class="form__button" type="button" id="clearContacts">Очистить</button>
+                <button class="form__button" type="button" id="saveContacts">Сохранить</button>
+                <button class="form__button form__button--next" type="button" id="nextBtn">&rarr; Далее</button>
             </div>
         </section>
 
@@ -95,8 +98,10 @@
             </div>
             <p class="skills__counter">Выбрано навыков: <span id="counter">0</span>/5</p>
             <div class="form__actions">
-                <button class="form__button" type="button" id="saveSkills">Сохранить</button>
+                <button class="form__button form__button--prev hi" type="button" id="prevBtn">&larr; Назад</button>
                 <button class="form__button" type="button" id="clearSkills">Очистить</button>
+                <button class="form__button" type="button" id="saveSkills">Сохранить</button>
+                <button class="form__button form__button--next" type="button" id="nextBtn">&rarr; Далее</button>
             </div>
         </section>
 
@@ -108,8 +113,10 @@
                 <label class="form__label" for="experienceText">Опыт работы:</label>
                 <textarea class="form__textarea" id="experienceText" rows="5" placeholder="Опишите Ваш опыт работы"></textarea>
                 <div class="form__actions">
-                    <button class="form__button" id="saveExperience" type="button">Сохранить</button>
+                    <button class="form__button form__button--prev hi" type="button" id="prevBtn">&larr; Назад</button>
                     <button class="form__button" id="clearExperience" type="button">Очистить</button>
+                    <button class="form__button" id="saveExperience" type="button">Сохранить</button>
+                    <button class="form__button form__button--next" type="button" id="nextBtn">&rarr; Далее</button>
                 </div>
             </form>
         </section>
@@ -136,8 +143,9 @@
                 <div class="summary__text summary__text--full" id="summaryExperience"></div>
             </div>
             <div class="summary__actions">
-                <button class="form__button" type="button" id="pdfBtn">Сохранить в PDF</button>
+                <button class="form__button form__button--prev hi" type="button" id="prevBtn">&larr; Назад</button>
                 <button class="form__button" type="button" id="clearSummaryBtn">Очистить</button>
+                <button class="form__button" type="button" id="pdfBtn">Сохранить в PDF</button>
             </div>
         </section>
     </main>
